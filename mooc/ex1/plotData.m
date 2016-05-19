@@ -16,8 +16,8 @@ function plotData(x, y)
 
 figure; % open a new figure window
 plot(x,y, 'g+', 'MarkerSize', 5)
-ylabel('response (prft)')
-xlabel('population')
+ylabel('response (profit in 10k USD)')
+xlabel('population of city (in 10k)')
 % ============================================================
 
 end
