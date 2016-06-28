@@ -21,9 +21,8 @@ J = sum( -y.*log(sigmoid(X*theta)) ...
          -(1-y).*log(1-sigmoid(X*theta)) )/m ...
          + lambda/2/m*sum(theta(2:end).^2);
 
-grad(1)     = (X(:,1)'*(sigmoid(X(:,1)*theta(1))-y))/m;
-grad(2:end) = (X(:,2:end)'*(sigmoid(X(:,2:end)*theta(2:end))-y))/m ...
-               - lambda/m*theta(2:end);
+grad = (X'*(sigmoid(X*theta)-y))/m;
+grad(2:end) = grad(2:end) - lambda/m*theta(2:end);
 
 % =============================================================
 
