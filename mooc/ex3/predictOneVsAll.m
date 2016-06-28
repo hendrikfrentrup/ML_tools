@@ -28,15 +28,12 @@ X = [ones(m, 1) X];
 %       max element, for more information see 'help max'. If your examples 
 %       are in rows, then, you can use max(A, [], 2) to obtain the max 
 %       for each row.
-%       
+%
+  
+all_p = sigmoid(all_theta*X');
 
-
-
-
-
-
+[prob p] = max(all_p);
+p=p';
 
 % =========================================================================
-
-
 end
