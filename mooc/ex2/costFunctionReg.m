@@ -22,7 +22,7 @@ J = sum( -y.*log(sigmoid(X*theta)) ...
          + lambda/2/m*sum(theta(2:end).^2);
 
 grad = (X'*(sigmoid(X*theta)-y))/m;
-grad(2:end) = grad(2:end) - lambda/m*theta(2:end);
+grad(2:end) = grad(2:end) + lambda/m*theta(2:end);
 
 % =============================================================
 
