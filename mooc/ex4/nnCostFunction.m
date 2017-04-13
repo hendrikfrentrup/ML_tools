@@ -78,8 +78,8 @@ z3=a2*Theta2';
 a3=sigmoid(z3);
 
 # sum over the second dimens first
-J = sum( sum( -y_.*log(a3)  - (1-y).*log(1-a3) , 2) ) ...
-     + lambda/2/m*( sum(sum(Theta1(:,2:end).^2, 2)) + sum(sum(Theta2(:,2:end).^2, 2)) );
+J = sum( sum( -y_.*log(a3) - (1-y_).*log(1-a3) , 2) )/m; % ...
+    % - lambda/2/m*( sum(sum(Theta1(:,2:end).^2, 2)) + sum(sum(Theta2(:,2:end).^2, 2)) );
 
 % -------------------------------------------------------------
 
