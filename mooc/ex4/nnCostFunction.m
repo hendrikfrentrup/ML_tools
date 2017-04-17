@@ -63,7 +63,7 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
-y_ = zeros(size(y,1), 10);
+y_ = zeros(size(y,1), max(y));
 
 for i=1:size(y_,1)
   y_(i,y(i))=1;
@@ -78,15 +78,41 @@ z3=a2*Theta2';
 a3=sigmoid(z3);
 
 # sum over the second dimens first
-J = sum( sum( -y_.*log(a3) - (1-y_).*log(1-a3) , 2) )/m; % ...
-    % - lambda/2/m*( sum(sum(Theta1(:,2:end).^2, 2)) + sum(sum(Theta2(:,2:end).^2, 2)) );
+J = sum( sum( -y_.*log(a3) - (1-y_).*log(1-a3) , 2) )/m ...
+    + lambda/2/m*( sum(sum(Theta1(:,2:end).^2, 2)) + sum(sum(Theta2(:,2:end).^2, 2)) );
 
 % -------------------------------------------------------------
 
 % =========================================================================
 
+
+
+%for t = 1:m
+%  a1_ = X(t,:);
+%  z2_ = a1_*Theta1';
+%  a2_ = sigmoid(z2_);
+%  
+%  z3_ = [1 a2_]*Theta2';
+%  a3_ = sigmoid(z3_);
+%  
+%  delta3_ = a3_.-y_(t,:);
+%  delta2_ = delta3_*Theta2.*sigmoidGradient([1 z2])(2:end);
+%  
+%  Delta1_ = delta2_'*a1_;
+%  Delta2_ = delta3_'*a2_;
+%end
+
+
+delta3 = a3.-y_;
+delta2 = (delta3*Theta2.*sigmoidGradient([ones(m, 1) z2])) (:,2:end);
+
+D1=delta2'*X;
+D2=delta3'*a2;
+
+Theta1_grad = 1/m*(D1 + lambda.*[zeros(size(Theta1,1),1) Theta1(:,2:end)]);
+Theta2_grad = 1/m*(D2 + lambda.*[zeros(size(Theta2,1),1) Theta2(:,2:end)]);
+
 % Unroll gradients
 grad = [Theta1_grad(:) ; Theta2_grad(:)];
-
 
 end
