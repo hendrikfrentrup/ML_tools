@@ -15,8 +15,8 @@ statsmodels = "*"
 seaborn = "*"
 yellowbrick = "*"
 scikit-learn = "*"
-tensorflow = "*"
-keras = "*"
+tensorflow = "2.0"
+keras = "2.2.4-tf"
 
 [requires]
 python_version = "3.8"
